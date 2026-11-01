@@ -1,0 +1,16 @@
+{
+  "name": "Polaroid Sheets",
+  "short_name": "Polaroids",
+  "description": "Lay out two Polaroid-style cards on a 4x6 sheet and print it. Photos stay on your phone.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#2e5a4c",
+  "theme_color": "#2e5a4c",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
