@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="starting">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="version" content="b14dc114af">
+  <meta name="version" content="037ee8cd42">
   <title>Polaroid Sheets</title>
-  <meta name="description" content="Lay out two Polaroid-style cards on a 4x6 sheet and print it. Photos stay on your phone.">
+  <meta name="description" content="Two Polaroid-style cards on a 4x6 sheet, ready to print and cut. Photos stay on your phone.">
   <meta name="robots" content="noindex, nofollow">
   <meta name="referrer" content="no-referrer">
   <meta name="theme-color" content="#2e5a4c">
@@ -16,13 +16,13 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-180.png">
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-  <link rel="stylesheet" href="app.css?v=b14dc114af">
-  <script type="module" src="js/app.js?v=b14dc114af"></script>
+  <link rel="stylesheet" href="app.css?v=037ee8cd42">
+  <script type="module" src="js/app.js?v=037ee8cd42"></script>
 </head>
 <body>
   <header class="top">
-    <h1>Polaroid Sheets</h1>
-    <button type="button" id="menu-open" class="icon-button" aria-label="More options">
+    <h1 data-i18n="appName">Polaroid Sheets</h1>
+    <button type="button" id="menu-open" class="icon-button" data-i18n-aria="more" aria-label="More options">
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
         <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
       </svg>
@@ -30,80 +30,64 @@
   </header>
 
   <section id="all-style" class="all-style" hidden>
-    <p id="all-style-label" class="all-style-label">Style for every card</p>
+    <p id="all-style-label" class="all-style-label" data-i18n="styleForAll">Style for every card</p>
     <div class="seg" role="group" aria-labelledby="all-style-label" data-scope="all"></div>
   </section>
 
-  <main id="sheets" class="sheets" aria-label="Sheets"></main>
+  <main id="sheets" class="sheets" data-i18n-aria="sheets" aria-label="Sheets"></main>
 
   <section id="empty" class="empty" hidden>
-    <div class="ghost" aria-hidden="true"><span></span><span></span></div>
-    <p>Pick photos and they're laid out two to a 4×6 sheet, ready to print and cut.</p>
-    <p class="quiet">Photos never leave this phone, and nothing is kept once you close the app.</p>
+    <button type="button" id="empty-pick" class="ghost" data-i18n-aria="addPhotos" aria-label="Add photos"><span></span><span></span></button>
+    <p data-i18n="emptyLead">Pick photos and they're laid out two to a 4×6 sheet, ready to print and cut.</p>
+    <p class="quiet" data-i18n="emptyPrivacy">Photos never leave this phone, and nothing is kept once you close the app.</p>
   </section>
 
-
   <footer class="bar">
-    <button type="button" id="add" class="button secondary">Add photos</button>
-    <button type="button" id="print" class="button primary" disabled>Print</button>
+    <button type="button" id="add" class="button secondary" data-i18n="addBar" data-i18n-aria="addPhotos" aria-label="Add photos">Add photos</button>
+    <button type="button" id="print" class="button primary" disabled data-i18n="print">Print</button>
   </footer>
 
   <input id="picker" type="file" accept="image/*,.heic,.heif,.dng" multiple hidden>
 
   <div id="editor" class="editor" hidden>
-    <div class="seg" role="group" aria-label="Style for this card" data-scope="card"></div>
+    <div class="seg" role="group" data-i18n-aria="styleForCard" aria-label="Style for this card" data-scope="card"></div>
     <p class="facts" id="facts"></p>
     <div class="editor-actions">
-      <button type="button" class="button small" data-act="swap">Swap sides</button>
-      <button type="button" class="button small danger" data-act="remove">Remove</button>
-      <button type="button" class="button small" data-act="done">Done</button>
+      <button type="button" class="button small" data-act="swap" data-i18n="swap">Swap sides</button>
+      <button type="button" class="button small danger" data-act="remove" data-i18n="remove">Remove</button>
+      <button type="button" class="button small" data-act="done" data-i18n="done">Done</button>
     </div>
-    <p class="hint">To move this photo, tap any other card.</p>
+    <p class="hint" data-i18n="moveHint">To move this photo, tap any other card.</p>
   </div>
 
-  <dialog id="print-dialog" class="sheet-dialog" aria-labelledby="print-title">
-    <h2 id="print-title">Print</h2>
-    <p id="print-status" class="status" aria-live="polite"></p>
-    <ul class="tips">
-      <li>Load 4 × 6 in (10 × 15 cm) photo paper.</li>
-      <li>If the print options show a paper size, pick 4 × 6.</li>
-      <li>Cut down the middle, between the grey ticks.</li>
-    </ul>
-    <div class="dialog-actions">
-      <button type="button" id="print-go" class="button primary" disabled>Print</button>
-      <button type="button" id="save-go" class="button secondary" disabled>Save images</button>
-      <button type="button" class="button plain" data-close>Cancel</button>
+  <dialog id="menu" class="sheet-dialog" autofocus data-i18n-aria="more" aria-label="More options">
+    <div class="seg lang-switch" role="group" data-i18n-aria="language" aria-label="Language" data-scope="lang">
+      <button type="button" data-lang="ru" lang="ru">Русский</button>
+      <button type="button" data-lang="en" lang="en">English</button>
     </div>
-  </dialog>
-
-  <dialog id="menu" class="sheet-dialog" aria-label="More options">
     <div class="dialog-actions">
-      <button type="button" id="tips-open" class="button secondary">Printing tips</button>
-      <button type="button" id="clear-all" class="button secondary danger">Clear all sheets</button>
-      <button type="button" class="button plain" data-close>Close</button>
+      <button type="button" id="save-go" class="button secondary" data-i18n="saveImages">Save sheets to Photos</button>
+      <button type="button" id="tips-open" class="button secondary" data-i18n="howToPrint">How to print</button>
+      <button type="button" id="clear-all" class="button secondary danger" data-i18n="clearAll">Clear all</button>
+      <button type="button" class="button plain" data-close data-i18n="close">Close</button>
     </div>
     <p id="version" class="version"></p>
   </dialog>
 
-  <dialog id="tips" class="sheet-dialog" aria-labelledby="tips-title">
-    <h2 id="tips-title">Printing tips</h2>
-    <ul class="tips">
-      <li>The sheet is exactly 4 × 6 in, so print it at full size. If your printer offers a scale, keep it at 100%.</li>
-      <li>Borderless isn't needed. Every photo sits more than 5 mm from the paper edge.</li>
-      <li>Each card should measure 75 × 100 mm after cutting. If yours come out smaller, the print was shrunk to fit; try printing borderless.</li>
-      <li><strong>Save images</strong> stores the sheets in Photos for a print shop: 1800 × 1200 px JPEGs at 300 DPI.</li>
-    </ul>
+  <dialog id="tips" class="sheet-dialog" autofocus aria-labelledby="tips-title">
+    <h2 id="tips-title" data-i18n="howToPrint">How to print</h2>
+    <ul class="tips" id="tips-list"></ul>
     <div class="dialog-actions">
-      <button type="button" class="button plain" data-close>Close</button>
+      <button type="button" class="button plain" data-close data-i18n="close">Close</button>
     </div>
   </dialog>
 
-  <dialog id="confirm-clear" class="sheet-dialog" aria-labelledby="confirm-title">
-    <h2 id="confirm-title">Clear all sheets?</h2>
-    <p>This removes every photo from the app. The originals in your library aren't touched.</p>
+  <dialog id="confirm-clear" class="sheet-dialog" autofocus aria-labelledby="confirm-title">
+    <h2 id="confirm-title" data-i18n="confirmTitle">Clear all sheets?</h2>
+    <p data-i18n="confirmBody">This removes every photo from the app. Your photo library isn't touched.</p>
     <div class="dialog-actions">
-      <button type="button" id="clear-yes" class="button primary danger-fill">Clear all</button>
-      <button type="button" class="button plain" data-close>Cancel</button>
+      <button type="button" id="clear-yes" class="button primary danger-fill" data-i18n="confirmYes">Clear all</button>
+      <button type="button" class="button plain" data-close data-i18n="cancel">Cancel</button>
     </div>
   </dialog>
 

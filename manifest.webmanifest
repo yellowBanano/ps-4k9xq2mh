@@ -1,7 +1,7 @@
 {
   "name": "Polaroid Sheets",
   "short_name": "Polaroids",
-  "description": "Lay out two Polaroid-style cards on a 4x6 sheet and print it. Photos stay on your phone.",
+  "description": "Two Polaroid-style cards on a 4x6 sheet, ready to print and cut. Photos stay on your phone.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
